@@ -1,0 +1,43 @@
+{
+  "name": "eisenhower-quadrants",
+  "version": "1.0.0",
+  "description": "Eisenhower matrix for Obsidian: urgency from due dates, importance from your priority.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "test": "tsx --test tests/*.test.ts",
+    "lint": "eslint src",
+    "version": "node version-bump.mjs && git add manifest.json versions.json"
+  },
+  "keywords": [
+    "obsidian",
+    "obsidian-plugin",
+    "eisenhower",
+    "tasks"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "esbuild": "^0.28.2",
+    "eslint": "^9.39.5",
+    "eslint-plugin-obsidianmd": "^0.4.2",
+    "globals": "^17.13.0",
+    "jiti": "^2.7.0",
+    "obsidian": "^1.14.4",
+    "tslib": "^2.8.1",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.0"
+  },
+  "private": true,
+  "author": "lucasnad",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasnad/eisenhower-quadrants.git"
+  },
+  "homepage": "https://github.com/lucasnad/eisenhower-quadrants#readme",
+  "bugs": {
+    "url": "https://github.com/lucasnad/eisenhower-quadrants/issues"
+  }
+}

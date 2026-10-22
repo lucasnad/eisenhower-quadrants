@@ -1,0 +1,10 @@
+{
+  "id": "eisenhower-quadrants",
+  "name": "Eisenhower Quadrants",
+  "version": "1.0.0",
+  "minAppVersion": "1.8.7",
+  "description": "Sort your checkbox tasks into an Eisenhower matrix (matriz de Eisenhower). Urgency comes from due dates, importance from your priority. Drag cards to override.",
+  "author": "lucasnad",
+  "authorUrl": "https://github.com/lucasnad",
+  "isDesktopOnly": false
+}

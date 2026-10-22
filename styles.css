@@ -1,0 +1,357 @@
+/* Eisenhower Quadrants */
+
+.eq-view {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-4-2);
+	height: 100%;
+	padding: var(--size-4-3);
+}
+
+.eq-toolbar {
+	display: flex;
+	gap: var(--size-4-2);
+	flex: 0 0 auto;
+}
+
+.eq-search {
+	flex: 1 1 auto;
+	max-width: 24rem;
+}
+
+.eq-host {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: auto;
+}
+
+.eq-root {
+	container-type: inline-size;
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-4-3);
+	min-height: 0;
+}
+
+.eq-view .eq-root {
+	min-height: 100%;
+}
+
+.eq-error {
+	color: var(--text-error);
+	padding: var(--size-4-2);
+	border: 1px solid var(--background-modifier-error);
+	border-radius: var(--radius-m);
+}
+
+.eq-empty {
+	color: var(--text-muted);
+	text-align: center;
+	padding: var(--size-4-8) var(--size-4-4);
+}
+
+/* Grid: one label column and two quadrant columns */
+.eq-matrix {
+	display: grid;
+	grid-template-columns: 1.6rem minmax(0, 1fr) minmax(0, 1fr);
+	grid-template-rows: auto minmax(11rem, 1fr) minmax(11rem, 1fr);
+	gap: var(--size-4-2);
+	flex: 1 1 auto;
+	min-height: 0;
+}
+
+.eq-axis {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+	font-weight: var(--font-semibold);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.eq-axis-row {
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+}
+
+/* Quadrants */
+.eq-quadrant,
+.eq-triage {
+	--eq-accent: var(--text-muted);
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	min-height: 0;
+	border: 1px solid var(--background-modifier-border);
+	border-top: 3px solid var(--eq-accent);
+	border-radius: var(--radius-m);
+	background-color: var(--background-secondary);
+	background-color: color-mix(in srgb, var(--eq-accent) 6%, var(--background-primary));
+	transition: box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.eq-q-do {
+	--eq-accent: var(--color-red);
+}
+.eq-q-schedule {
+	--eq-accent: var(--color-blue);
+}
+.eq-q-delegate {
+	--eq-accent: var(--color-orange);
+}
+.eq-q-eliminate {
+	--eq-accent: var(--text-faint);
+}
+.eq-triage {
+	--eq-accent: var(--color-purple);
+}
+
+.eq-quadrant.is-drop-target {
+	border-color: var(--eq-accent);
+	box-shadow: 0 0 0 2px var(--eq-accent);
+}
+
+.eq-q-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--size-4-2);
+	padding: var(--size-4-2) var(--size-4-3) var(--size-2-1);
+}
+
+.eq-q-title {
+	display: flex;
+	align-items: center;
+	gap: var(--size-4-2);
+	font-weight: var(--font-semibold);
+	color: var(--text-normal);
+}
+
+.eq-count {
+	font-size: var(--font-ui-smaller);
+	font-weight: var(--font-normal);
+	color: var(--text-muted);
+	background-color: var(--background-modifier-hover);
+	border-radius: var(--radius-l);
+	padding: 0 var(--size-4-2);
+	min-width: 1.4em;
+	text-align: center;
+}
+
+.eq-q-hint {
+	font-size: var(--font-ui-smaller);
+	color: var(--text-muted);
+}
+
+.eq-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-2-2);
+	padding: var(--size-2-1) var(--size-4-2) var(--size-4-2);
+	overflow-y: auto;
+	flex: 1 1 auto;
+	min-height: 0;
+}
+
+.eq-q-empty {
+	color: var(--text-faint);
+	font-size: var(--font-ui-smaller);
+	text-align: center;
+	padding: var(--size-4-4) 0;
+}
+
+.eq-more {
+	align-self: center;
+	margin-top: var(--size-2-1);
+}
+
+/* Triage tray */
+.eq-triage {
+	flex: 0 0 auto;
+	max-height: 40%;
+}
+
+.eq-triage-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+	align-content: start;
+}
+
+/* Cards */
+.eq-card {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	gap: var(--size-4-2);
+	padding: var(--size-4-2) var(--size-4-2) var(--size-4-2) var(--size-4-3);
+	background-color: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+	border-left: 3px solid var(--eq-accent, var(--background-modifier-border));
+	border-radius: var(--radius-s);
+	cursor: grab;
+}
+
+.eq-card:hover {
+	border-color: var(--background-modifier-border-hover);
+	border-left-color: var(--eq-accent, var(--background-modifier-border-hover));
+}
+
+.eq-card.is-dragging {
+	opacity: 0.4;
+}
+
+.eq-card.is-done .eq-card-text {
+	text-decoration: line-through;
+	color: var(--text-faint);
+}
+
+.eq-card.is-overdue {
+	border-left-color: var(--color-red);
+}
+
+.eq-check {
+	flex: 0 0 auto;
+	margin-top: 0.2em;
+}
+
+.eq-check:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.eq-card-main {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.eq-card-text {
+	cursor: pointer;
+	overflow-wrap: anywhere;
+	line-height: var(--line-height-tight);
+}
+
+.eq-card-text:hover {
+	color: var(--text-accent);
+}
+
+.eq-tag {
+	color: var(--tag-color, var(--text-accent));
+	background-color: var(--tag-background, transparent);
+	border-radius: var(--radius-s);
+	padding: 0 var(--size-2-1);
+	font-size: 0.9em;
+}
+
+.eq-card-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--size-2-2);
+	margin-top: var(--size-2-1);
+}
+
+.eq-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--size-2-1);
+	font-size: var(--font-ui-smaller);
+	line-height: 1.4;
+	color: var(--text-muted);
+	background-color: var(--background-modifier-hover);
+	border-radius: var(--radius-s);
+	padding: 0 var(--size-4-1);
+}
+
+.eq-chip .svg-icon {
+	width: 0.9em;
+	height: 0.9em;
+}
+
+.eq-due.is-soon {
+	color: var(--color-orange);
+}
+
+.eq-due.is-overdue {
+	color: var(--text-on-accent);
+	background-color: var(--color-red);
+}
+
+.eq-p-highest,
+.eq-p-high {
+	color: var(--color-red);
+}
+
+.eq-p-low,
+.eq-p-lowest {
+	color: var(--text-faint);
+}
+
+.eq-source {
+	max-width: 12rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline-block;
+}
+
+.eq-icon-btn {
+	flex: 0 0 auto;
+}
+
+.eq-card-menu {
+	opacity: 0.5;
+}
+
+.eq-card:hover .eq-card-menu,
+.eq-card-menu:focus-visible {
+	opacity: 1;
+}
+
+.is-mobile .eq-card-menu {
+	opacity: 1;
+}
+
+.eq-modal-input {
+	min-width: 16rem;
+}
+
+/* Narrow containers (phones, side panes): a single column, no axis labels */
+@container (max-width: 560px) {
+	.eq-matrix {
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: none;
+	}
+
+	.eq-corner,
+	.eq-axis {
+		display: none;
+	}
+
+	.eq-quadrant {
+		min-height: 9rem;
+	}
+
+	.eq-triage-list {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* Embedded in a note: size to content, cap the height of each list */
+.markdown-rendered .eq-matrix,
+.markdown-source-view .eq-matrix {
+	grid-template-rows: auto minmax(8rem, auto) minmax(8rem, auto);
+}
+
+.markdown-rendered .eq-list,
+.markdown-source-view .eq-list {
+	max-height: 22rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.eq-quadrant,
+	.eq-triage {
+		transition: none;
+	}
+}
